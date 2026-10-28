@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f8f5">
+<title>TernoTrip — Thoughtful journeys</title>
+
+<style>
+/* ── TOKENS ── */
+:root{
+  --forest:#0c4a43;--deep:#073f39;--mint:#e7f3ee;--cream:#f6f1e7;
+  --ink:#153e3a;--muted:#71827c;--line:#dfe8e2;--lime:#d9ef8a;
+  --shadow-sm:0 1px 3px rgba(10,40,30,.08);
+  --shadow-md:0 4px 16px rgba(10,40,30,.10);
+  --shadow-lg:0 8px 32px rgba(10,40,30,.13);
+  --radius:10px;
+}
+
+/* ── RESET ── */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#f7f8f5;color:var(--ink);font-family:Inter,Arial,sans-serif;font-size:13px;-webkit-font-smoothing:antialiased}
+.page{max-width:90%;margin:auto;padding:0 26px}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+img{display:block}
+
+/* ══════════════════════════════════════
+   HEADER
+══════════════════════════════════════ */
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(247,248,245,.92);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(223,232,226,.7);
+  height:66px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:16px;letter-spacing:-.4px;color:var(--ink)}
+.logo-mark{
+  display:grid;place-items:center;
+  width:32px;height:32px;border-radius:9px;
+  background:var(--forest);color:#fff;font-size:16px;
+  box-shadow:0 2px 8px rgba(12,74,67,.3);
+}
+.nav{display:flex;gap:24px;color:#536a63;font-size:12px;font-weight:500}
+.nav a{position:relative;padding-bottom:2px;transition:color .2s}
+.nav a:hover{color:var(--forest)}
+.nav a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background:var(--lime);border-radius:2px;transform:scaleX(0);transition:transform .2s}
+.nav a:hover::after{transform:scaleX(1)}
+.nav-cta{
+  background:var(--forest);color:white;
+  padding:10px 18px;border-radius:6px;
+  font-size:11px;font-weight:700;letter-spacing:.3px;
+  transition:background .2s,transform .15s,box-shadow .2s;
+  box-shadow:0 2px 8px rgba(12,74,67,.25);
+}
+.nav-cta:hover{background:#0a3d37;transform:translateY(-1px);box-shadow:0 4px 14px rgba(12,74,67,.3)}
+
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+.hero{
+  height:clamp(300px,38vw,480px);
+  position:relative;overflow:hidden;
+  border-radius:16px;
+  margin:22px 0 36px;
+  background:#0a2822;
+  color:white;
+  isolation:isolate;
+  box-shadow:var(--shadow-lg);
+}
+
+/* video layer */
+.hero-yt-wrap{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.hero-yt-wrap video{
+  position:absolute;top:0;left:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition:opacity 1.4s ease;
+}
+.hero-yt-wrap video.active{opacity:1}
+
+/* layered gradient — more cinematic */
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(110deg, rgba(4,28,22,.88) 0%, rgba(4,28,22,.45) 45%, rgba(4,28,22,.05) 75%),
+    linear-gradient(0deg,   rgba(4,28,22,.55) 0%, transparent 45%);
+}
+
+/* hero copy */
+.hero-copy{
+  position:absolute;z-index:2;
+  left:clamp(28px,5.5vw,68px);
+  top:50%;transform:translateY(-50%);
+  max-width:540px;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:9px;text-transform:uppercase;letter-spacing:2.2px;
+  color:#c8e87e;font-weight:700;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);
+  backdrop-filter:blur(6px);
+  padding:5px 10px;border-radius:20px;
+  margin-bottom:16px;
+}
+.hero-eyebrow::before{content:'✦';font-size:7px}
+.hero h1{
+  font-family:Georgia,serif;
+  font-size:clamp(34px,5.2vw,62px);
+  font-weight:500;line-height:1.06;letter-spacing:-.8px;
+  margin:0 0 14px;
+  text-shadow:0 2px 20px rgba(0,0,0,.3);
+}
+.hero h1 em{font-style:italic;color:#d9ef8a}
+.hero-sub{
+  font-size:12.5px;line-height:1.8;
+  color:rgba(220,236,228,.88);
+  max-width:380px;margin:0 0 26px;
+}
+
+/* hero buttons */
+.hero-actions{display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--lime);color:#173e35;
+  padding:13px 20px;border:0;border-radius:7px;
+  font-weight:800;font-size:11.5px;letter-spacing:.2px;cursor:pointer;
+  box-shadow:0 4px 14px rgba(217,239,138,.35);
+  transition:background .2s,transform .15s,box-shadow .2s;
+}
+.btn-primary:hover{background:#c8e070;transform:translateY(-2px);box-shadow:0 6px 20px rgba(217,239,138,.45)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:7px;
+  border:1.5px solid rgba(255,255,255,.5);color:white;
+  background:rgba(255,255,255,.08);backdrop-filter:blur(8px);
+  padding:12px 18px;border-radius:7px;
+  font-weight:600;font-size:11.5px;cursor:pointer;
+  transition:background .2s,border-color .2s,transform .15s;
+}
+.btn-ghost:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.8);transform:translateY(-2px)}
+
+/* progress bar dots */
+.hero-controls{
+  position:absolute;bottom:20px;
+  left:clamp(28px,5.5vw,68px);
+  z-index:3;
+  display:flex;align-items:center;gap:10px;
+}
+.video-dots{display:flex;gap:6px}
+.video-dots span{
+  display:block;width:20px;height:3px;border-radius:2px;
+  background:rgba(255,255,255,.3);cursor:pointer;
+  transition:background .3s,width .35s;
+}
+.video-dots span.active{background:#d9ef8a;width:32px}
+
+/* slide counter */
+.slide-counter{font-size:9px;letter-spacing:1px;color:rgba(255,255,255,.55)}
+
+/* bottom-right label */
+.vid-badge{
+  position:absolute;right:20px;bottom:20px;z-index:3;
+  font-size:8.5px;letter-spacing:1.3px;color:rgba(255,255,255,.5);
+  text-transform:uppercase;
+}
+
+/* ══════════════════════════════════════
+   SECTION LAYOUT
+══════════════════════════════════════ */
+section{margin:0 0 32px}
+.section-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:18px}
+.eyebrow-dark{font-size:8px;letter-spacing:1.8px;text-transform:uppercase;color:#57918a;font-weight:700;margin-bottom:5px}
+.section-top h2{
+  font-family:Georgia,serif;
+  font-size:26px;font-weight:500;letter-spacing:-.4px;color:var(--ink);
+}
+.sub{font-size:10.5px;color:var(--muted);margin:5px 0 0;line-height:1.6}
+.small-link{
+  font-size:10.5px;color:var(--forest);font-weight:700;white-space:nowrap;
+  display:inline-flex;align-items:center;gap:4px;
+  padding:7px 12px;border-radius:20px;
+  border:1.5px solid var(--line);
+  transition:background .2s,border-color .2s;
+}
+.small-link:hover{background:var(--mint);border-color:#b5d0c5}
+
+/* ══════════════════════════════════════
+   TRIP CARDS
+══════════════════════════════════════ */
+.trips{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.trip{
+  background:white;border:1px solid #e8eee8;
+  border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow-sm);
+  transition:transform .25s,box-shadow .25s;
+}
+.trip:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.trip-photo{height:168px;position:relative;overflow:hidden;background:#d8e6db}
+.trip-photo img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
+.trip:hover .trip-photo img{transform:scale(1.07)}
+.pill{
+  position:absolute;left:10px;top:10px;
+  border-radius:4px;padding:5px 8px;
+  font-size:7.5px;font-weight:800;letter-spacing:.5px;
+}
+.pill-upcoming{background:#fff3c7;color:#7a5400}
+.pill-completed{background:#dcf0e8;color:#115c3b}
+.trip-content{padding:14px 14px 13px}
+.trip-content .eyebrow-dark{margin-bottom:3px}
+.trip h3{font-family:Georgia,serif;font-size:17px;font-weight:500;line-height:1.3;margin:0 0 7px;color:var(--ink)}
+.trip p{font-size:10.5px;line-height:1.6;color:#7a8f86;margin:0 0 12px;min-height:33px}
+.trip-bottom{
+  border-top:1px solid #eef1eb;padding-top:10px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:9.5px;color:#8a9c92;
+}
+.trip-bottom a{
+  font-weight:700;color:var(--forest);font-size:10px;
+  display:inline-flex;align-items:center;gap:3px;
+  transition:gap .2s;
+}
+.trip-bottom a:hover{gap:6px}
+
+/* ══════════════════════════════════════
+   TESTIMONIALS
+══════════════════════════════════════ */
+.testimonials{
+  background:linear-gradient(135deg,#e4f0ea 0%,#d8ecdf 100%);
+  padding:28px 28px;border-radius:14px;
+  border:1px solid #c8e0d0;
+}
+.testimonials .section-top{margin-bottom:18px}
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.quote{
+  background:white;border-radius:10px;
+  padding:18px;
+  box-shadow:0 2px 10px rgba(10,40,30,.06);
+  border:1px solid rgba(200,224,208,.5);
+  transition:transform .2s,box-shadow .2s;
+}
+.quote:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(10,40,30,.1)}
+.quote-stars{color:#d4a017;letter-spacing:2px;font-size:11px;margin-bottom:8px}
+.quote p{
+  font-family:Georgia,serif;
+  font-size:13.5px;font-style:italic;line-height:1.55;
+  color:#2a4f45;margin:0 0 14px;
+}
+.person{display:flex;align-items:center;gap:9px;font-size:10px;color:#5a7068}
+.avatar{
+  width:30px;height:30px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,#a8d4be,#7bbfa4);
+  border-radius:50%;font-weight:800;font-size:10px;color:#fff;
+  flex-shrink:0;
+}
+.person-info b{display:block;font-size:10.5px;color:var(--ink);font-weight:700}
+.person-info span{font-size:9.5px;color:var(--muted)}
+
+/* ══════════════════════════════════════
+   JOURNAL
+══════════════════════════════════════ */
+.journal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.journal-card{
+  background:white;border-radius:var(--radius);overflow:hidden;
+  border:1px solid #e8eee8;
+  box-shadow:var(--shadow-sm);
+  transition:transform .25s,box-shadow .25s;
+}
+.journal-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.journal-card-img{height:148px;overflow:hidden}
+.journal-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
+.journal-card:hover .journal-card-img img{transform:scale(1.07)}
+.journal-card-body{padding:13px 14px 14px}
+.journal-card .meta{
+  font-size:8px;color:#9aab9f;
+  text-transform:uppercase;letter-spacing:1px;
+  margin-bottom:7px;font-weight:600;
+}
+.journal-card h3{
+  font-family:Georgia,serif;
+  font-size:15.5px;font-weight:500;line-height:1.35;
+  margin:0 0 10px;color:var(--ink);
+}
+.journal-card .read{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:9.5px;color:var(--forest);font-weight:700;
+  transition:gap .2s;
+}
+.journal-card .read:hover{gap:7px}
+
+/* ══════════════════════════════════════
+   NEWSLETTER
+══════════════════════════════════════ */
+.newsletter{
+  background:linear-gradient(135deg,#f5eedf 0%,#ede6d3 100%);
+  border-radius:14px;padding:30px 32px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  margin:8px 0 30px;
+  border:1px solid #e2d9c4;
+  box-shadow:var(--shadow-sm);
+}
+.newsletter-left .eyebrow-dark{margin-bottom:6px}
+.newsletter h2{
+  font-family:Georgia,serif;
+  font-weight:500;font-size:22px;margin:0 0 6px;color:var(--ink);
+}
+.newsletter p{font-size:10.5px;color:#7b837a;line-height:1.65}
+.signup{
+  display:flex;gap:7px;min-width:310px;
+  background:white;border-radius:8px;
+  padding:5px 5px 5px 14px;
+  border:1.5px solid #d5ccb5;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+  transition:border-color .2s,box-shadow .2s;
+}
+.signup:focus-within{border-color:#77a69a;box-shadow:0 0 0 3px rgba(119,166,154,.15)}
+.signup input{
+  min-width:0;flex:1;border:0;background:transparent;
+  font-size:10.5px;outline:none;color:var(--ink);
+}
+.signup input::placeholder{color:#b0b8b0}
+.signup button{
+  border:0;border-radius:5px;
+  background:var(--forest);color:#fff;
+  padding:10px 16px;font-size:10.5px;font-weight:700;
+  cursor:pointer;white-space:nowrap;
+  transition:background .2s,transform .15s;
+}
+.signup button:hover{background:#0a3d37;transform:scale(1.02)}
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer{
+  background:var(--deep);color:#dce9e2;
+  border-radius:14px 14px 0 0;
+  padding:32px 28px 22px;
+  display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:28px;
+  margin:0 -14px;
+}
+.foot-brand{font-size:15px;font-weight:800;display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.foot-brand .logo-mark{background:#d7ef8a;color:var(--deep);box-shadow:none}
+footer .foot-desc{font-size:9.5px;color:#b7cdc4;line-height:1.75;max-width:200px;margin-bottom:14px}
+footer .foot-email{font-size:9.5px;color:#90b8ad;display:inline-flex;align-items:center;gap:5px}
+footer h4{font-size:10px;color:rgba(255,255,255,.9);margin:0 0 12px;letter-spacing:.5px;text-transform:uppercase}
+footer a{display:block;font-size:9.5px;color:#a8c4ba;margin:7px 0;transition:color .2s}
+footer a:hover{color:#d9ef8a}
+.copyright{
+  grid-column:1/-1;
+  border-top:1px solid rgba(255,255,255,.1);
+  padding-top:14px;margin-top:4px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:8.5px;color:#7a9f94;
+}
+
+/* ══════════════════════════════════════
+   TOAST
+══════════════════════════════════════ */
+.toast{
+  position:fixed;bottom:24px;left:50%;
+  transform:translate(-50%,20px);opacity:0;
+  background:var(--deep);color:white;
+  padding:13px 20px;border-radius:8px;
+  font-size:12px;font-weight:500;
+  box-shadow:0 8px 24px rgba(0,0,0,.2);
+  transition:.25s;pointer-events:none;
+  display:flex;align-items:center;gap:8px;
+}
+.toast::before{content:'✓';
+  background:#d9ef8a;color:var(--deep);
+  width:18px;height:18px;border-radius:50%;
+  display:grid;place-items:center;font-size:10px;font-weight:900;flex-shrink:0;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media(min-width:1100px){
+  .page{padding:0 36px}
+  .trip-photo{height:185px}
+  .journal-card-img{height:160px}
+}
+@media(max-width:700px){
+  .page{padding:0 16px}
+  header{height:60px}
+  .nav{display:none}
+  .nav-cta{padding:9px 13px;font-size:10px}
+  .hero{height:420px;margin:14px 0 26px;border-radius:12px}
+  .hero-copy{left:22px;right:20px}
+  .hero h1{font-size:36px}
+  .hero-sub{max-width:290px;font-size:11.5px}
+  .hero-actions{gap:9px}
+  .btn-primary,.btn-ghost{font-size:10.5px;padding:11px 14px}
+  .section-top{align-items:flex-start;flex-direction:column;gap:10px}
+  .section-top h2{font-size:22px}
+  .trips{grid-template-columns:1fr;gap:13px}
+  .trip-photo{height:200px}
+  .trip p{min-height:0}
+  .quotes{grid-template-columns:1fr;gap:13px}
+  .journal-grid{grid-template-columns:1fr;gap:14px}
+  .journal-card-img{height:200px}
+  .newsletter{flex-direction:column;padding:22px 20px;gap:18px}
+  .signup{min-width:0;width:100%}
+  footer{grid-template-columns:1fr 1fr;padding:24px 18px;gap:18px;margin:0 -7px}
+  .foot-intro{grid-column:1/-1}
+  .copyright{grid-column:1/-1;flex-direction:column;gap:5px;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ══════════════════════════════════════
+     HEADER
+══════════════════════════════════════ -->
+<header>
+  <a href="#" class="logo">
+    <span class="logo-mark">✳</span> TernoTrip
+  </a>
+  <nav class="nav">
+    <a href="#upcoming">Upcoming trips</a>
+    <a href="#trips">Completed trips</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#journal">Journal</a>
+  </nav>
+  <a class="nav-cta" href="#newsletter">Plan your trip ↗</a>
+</header>
+
+<main>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section class="hero" aria-label="Travel video banner">
+  <div class="hero-yt-wrap" id="heroWrap">
+    <video class="active" id="vid0" muted playsinline autoplay>
+      <source src="126837-737020173_medium.mp4" type="video/mp4">
+    </video>
+    <video id="vid1" muted playsinline>
+      <source src="3713-173505175_medium.mp4" type="video/mp4">
+    </video>
+    <video id="vid2" muted playsinline>
+      <source src="79630-570129458_medium.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="hero-copy">
+    <div class="hero-eyebrow">Your next chapter starts here</div>
+    <h1>Travel more.<br><em>Feel everything.</em></h1>
+    <p class="hero-sub">Slow down, go a little further, and discover the places that make you see the world differently.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#upcoming">✦ Upcoming Trips</a>
+      <a class="btn-ghost" href="#trips">Completed Trips ↗</a>
+    </div>
+  </div>
+
+  <div class="hero-controls">
+    <div class="video-dots" id="videoDots">
+      <span class="active"></span><span></span><span></span>
+    </div>
+    <span class="slide-counter" id="slideCounter">1 / 3</span>
+  </div>
+  <div class="vid-badge">✦ A little more wonder, everywhere</div>
+</section>
+
+<!-- ══════════════════════════════════════
+     UPCOMING TRIPS
+══════════════════════════════════════ -->
+<section id="upcoming">
+  <div class="section-top">
+    <div>
+      <div class="eyebrow-dark">What's next on the map</div>
+      <h2>Upcoming Trips</h2>
+      <p class="sub">Reserve your spot before these journeys fill up.</p>
+    </div>
+    <a class="small-link" href="#newsletter">Get early access ↗</a>
+  </div>
+  <div class="trips">
+    <article class="trip">
+      <div class="trip-photo">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=850&q=85" alt="Morocco medina alley">
+        <span class="pill pill-upcoming">UPCOMING · MAR 2025</span>
+      </div>
+      <div class="trip-content">
+        <div class="eyebrow-dark">MOROCCO</div>
+        <h3>Marrakech & the Atlas Mountains</h3>
+        <p>Wander the medina, sleep under stars, and taste a country that never stops surprising you.</p>
+        <div class="trip-bottom"><span>◷ 8 days · Small group</span><a href="#newsletter">Reserve a spot ↗</a></div>
+      </div>
+    </article>
+    <article class="trip">
+      <div class="trip-photo">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1501179691627-eeaa65ea017c?auto=format&fit=crop&w=850&q=85" alt="Greek islands blue domes">
+        <span class="pill pill-upcoming">UPCOMING · APR 2025</span>
+      </div>
+      <div class="trip-content">
+        <div class="eyebrow-dark">GREECE</div>
+        <h3>The quieter side of the Greek islands</h3>
+        <p>Beyond the crowds — slower islands, hidden coves, and evenings that go on forever.</p>
+        <div class="trip-bottom"><span>◷ 9 days · Island hop</span><a href="#newsletter">Reserve a spot ↗</a></div>
+      </div>
+    </article>
+    <article class="trip">
+      <div class="trip-photo">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=850&q=85" alt="Vietnam rice fields">
+        <span class="pill pill-upcoming">UPCOMING · MAY 2025</span>
+      </div>
+      <div class="trip-content">
+        <div class="eyebrow-dark">VIETNAM</div>
+        <h3>Northern Vietnam: rice, roads & rivers</h3>
+        <p>Winding mountain passes, floating villages, and a cuisine that stops you mid-conversation.</p>
+        <div class="trip-bottom"><span>◷ 10 days · Cultural</span><a href="#newsletter">Reserve a spot ↗</a></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     COMPLETED TRIPS
+══════════════════════════════════════ -->
+<section id="trips">
+  <div class="section-top">
+    <div>
+      <div class="eyebrow-dark">Real journeys, real memories</div>
+      <h2>Completed Trips</h2>
+      <p class="sub">A look back at the places, people and moments that made these journeys unforgettable.</p>
+    </div>
+    <a class="small-link" href="#journal">Explore experiences ↗</a>
+  </div>
+  <div class="trips">
+    <article class="trip">
+      <div class="trip-photo">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=850&q=85" alt="Green rice terraces in Bali">
+        <span class="pill pill-completed">COMPLETED · 7 DAYS</span>
+      </div>
+      <div class="trip-content">
+        <div class="eyebrow-dark">INDONESIA</div>
+        <h3>Bali, a beautiful kind of slow</h3>
+        <p>Mountain mornings, temple trails, and the art of doing a little less.</p>
+        <div class="trip-bottom"><span>◷ 7 days · Small group</span><a href="#newsletter">Read the story ↗</a></div>
+      </div>
+    </article>
+    <article class="trip">
+      <div class="trip-photo">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=850&q=85" alt="Alpine peaks and mountain lake">
+        <span class="pill pill-completed">COMPLETED · 6 DAYS</span>
+      </div>
+      <div class="trip-content">
+        <div class="eyebrow-dark">ITALY</div>
+        <h3>Summer in the Dolomites</h3>
+        <p>Clear lakes, quiet trails and the kind of views that reset everything.</p>
+        <div class="trip-bottom"><span>◷ 6 days · Nature</span><a href="#newsletter">Read the story ↗</a></div>
+      </div>
+    </article>
+    <article class="trip">
+      <div class="trip-photo">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=850&q=85" alt="Lisbon street with tram">
+        <span class="pill pill-completed">COMPLETED · 5 DAYS</span>
+      </div>
+      <div class="trip-content">
+        <div class="eyebrow-dark">PORTUGAL</div>
+        <h3>Lisbon, one neighbourhood at a time</h3>
+        <p>Slow mornings, local cafés and little corners worth getting lost in.</p>
+        <div class="trip-bottom"><span>◷ 5 days · City break</span><a href="#newsletter">Read the story ↗</a></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════════ -->
+<section class="testimonials" id="reviews">
+  <div class="section-top">
+    <div>
+      <div class="eyebrow-dark">A few words from the road</div>
+      <h2>What travellers are saying</h2>
+    </div>
+  </div>
+  <div class="quotes">
+    <article class="quote">
+      <div class="quote-stars">★★★★★</div>
+      <p>"It came down to the small moments. The morning light, the long lunches, and all the little things in between."</p>
+      <div class="person">
+        <span class="avatar">AM</span>
+        <div class="person-info"><b>Alex Morgan</b><span>Travelled to Bali</span></div>
+      </div>
+    </article>
+    <article class="quote">
+      <div class="quote-stars">★★★★★</div>
+      <p>"The perfect balance — everything taken care of, but still feeling like we were discovering places on our own."</p>
+      <div class="person">
+        <span class="avatar">JL</span>
+        <div class="person-info"><b>Jamie Lee</b><span>Travelled to the Dolomites</span></div>
+      </div>
+    </article>
+    <article class="quote">
+      <div class="quote-stars">★★★★★</div>
+      <p>"We didn't just visit places. We felt like we belonged there, even briefly. Such a thoughtful way to travel."</p>
+      <div class="person">
+        <span class="avatar">SR</span>
+        <div class="person-info"><b>Sam Rivera</b><span>Travelled to Japan</span></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     JOURNAL
+══════════════════════════════════════ -->
+<section id="journal">
+  <div class="section-top">
+    <div>
+      <div class="eyebrow-dark">Little moments, told well</div>
+      <h2>The travel journal</h2>
+    </div>
+    <a class="small-link" href="#newsletter">Read all stories ↗</a>
+  </div>
+  <div class="journal-grid">
+    <article class="journal-card">
+      <div class="journal-card-img">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=850&q=85" alt="Colourful Italian village">
+      </div>
+      <div class="journal-card-body">
+        <div class="meta">CITY GUIDES · 5 MIN READ</div>
+        <h3>Kyoto in autumn: a slower way to explore</h3>
+        <a class="read" href="#newsletter">Read story ↗</a>
+      </div>
+    </article>
+    <article class="journal-card">
+      <div class="journal-card-img">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=850&q=85" alt="Hikers looking toward mountain peaks">
+      </div>
+      <div class="journal-card-body">
+        <div class="meta">SLOW TRAVEL · 7 MIN READ</div>
+        <h3>The small-group trip, reimagined</h3>
+        <a class="read" href="#newsletter">Read story ↗</a>
+      </div>
+    </article>
+    <article class="journal-card">
+      <div class="journal-card-img">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=850&q=85" alt="Cosy cabin in nature">
+      </div>
+      <div class="journal-card-body">
+        <div class="meta">STAYS & SPACES · 4 MIN READ</div>
+        <h3>Pack lighter. Bring back more.</h3>
+        <a class="read" href="#newsletter">Read story ↗</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     NEWSLETTER
+══════════════════════════════════════ -->
+<section class="newsletter" id="newsletter">
+  <div class="newsletter-left">
+    <div class="eyebrow-dark">A little inspiration for your next trip</div>
+    <h2>Good journeys start with a little inspiration.</h2>
+    <p>Travel notes, hidden gems and fresh journey ideas — delivered occasionally.</p>
+  </div>
+  <form class="signup" id="signup">
+    <input id="email" type="email" placeholder="Your email address" aria-label="Your email address" required>
+    <button type="submit">Count me in ↗</button>
+  </form>
+</section>
+
+</main>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer>
+  <div class="foot-intro">
+    <div class="foot-brand"><span class="logo-mark">✳</span> TernoTrip</div>
+    <p class="foot-desc">Thoughtful travel for curious souls. Find your people, places and perspective.</p>
+    <span class="foot-email">✉ hello@ternotrip.com</span>
+  </div>
+  <div>
+    <h4>Explore</h4>
+    <a href="#upcoming">Upcoming trips</a>
+    <a href="#trips">Past journeys</a>
+    <a href="#journal">Travel journal</a>
+  </div>
+  <div>
+    <h4>Travel</h4>
+    <a href="#trips">Find your trip</a>
+    <a href="#reviews">Our reviews</a>
+    <a href="#newsletter">Travel with us</a>
+  </div>
+  <div>
+    <h4>Here to help</h4>
+    <a href="#newsletter">FAQs</a>
+    <a href="#newsletter">Contact us</a>
+    <a href="#newsletter">Responsible travel</a>
+  </div>
+  <div class="copyright">
+    <span>© <span id="year"></span> TernoTrip. Made for the journey.</span>
+    <span>Privacy · Terms</span>
+  </div>
+</footer>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite">Thanks for joining us!</div>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ════════════════════════════
+   HERO VIDEO CYCLE
+════════════════════════════ */
+(function () {
+  const vids    = Array.from(document.querySelectorAll('#heroWrap video'));
+  const dots    = Array.from(document.querySelectorAll('#videoDots span'));
+  const counter = document.getElementById('slideCounter');
+  let current   = 0;
+  let clipTimer = null;
+  const CLIP_DURATION = 8000;
+
+  function goTo(idx) {
+    const prev = current;
+    current = ((idx % vids.length) + vids.length) % vids.length;
+
+    vids[current].currentTime = 0;
+    vids[current].play().catch(() => {});
+    vids[current].classList.add('active');
+
+    setTimeout(() => {
+      if (prev !== current) {
+        vids[prev].classList.remove('active');
+        vids[prev].pause();
+      }
+    }, 1500);
+
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    if (counter) counter.textContent = `${current + 1} / ${vids.length}`;
+
+    clearTimeout(clipTimer);
+    clipTimer = setTimeout(() => goTo(current + 1), CLIP_DURATION);
+  }
+
+  dots.forEach((d, i) => {
+    d.style.cursor = 'pointer';
+    d.addEventListener('click', () => goTo(i));
+  });
+
+  vids[0].play().catch(() => {});
+  clipTimer = setTimeout(() => goTo(1), CLIP_DURATION);
+})();
+
+/* ════════════════════════════
+   NEWSLETTER TOAST
+════════════════════════════ */
+const toast = document.getElementById('toast');
+let toastTimer;
+document.getElementById('signup').addEventListener('submit', e => {
+  e.preventDefault();
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
+  e.target.reset();
+});
+</script>
+</body>
+</html>
