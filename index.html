@@ -7,7 +7,7 @@
 <title>TernoTrip — India's Favourite Tour Packages</title>
 <style>
 /* ── TOKENS ── */
-:root{
+:root{           
   --navy:#1a2d5a;
   --orange:#e84d0e;
   --orange-light:#ff6b35;
@@ -48,11 +48,7 @@ header{
 }
 /* LOGO */
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.logo-img{height:42px;width:auto}
-.logo-text{display:flex;flex-direction:column;line-height:1}
-.logo-text .t1{font-size:18px;font-weight:800;letter-spacing:-.5px;color:var(--navy)}
-.logo-text .t2{font-size:18px;font-weight:800;letter-spacing:-.5px;color:var(--orange)}
-.logo-text span{display:inline}
+.logo-img{height:48px;width:auto;object-fit:contain}
 
 .nav{display:flex;align-items:center;gap:28px;font-size:12.5px;font-weight:500;color:#4a5568}
 .nav a{transition:color .2s;position:relative;padding-bottom:2px}
@@ -469,32 +465,7 @@ footer a:hover{color:#ffd580}
 ══════════════════════════ -->
 <header>
   <a href="#" class="logo">
-    <!-- Inline SVG logo — bird + TernoTrip text matching the brand logo -->
-    <svg class="logo-img" viewBox="0 0 160 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Bird body -->
-      <ellipse cx="82" cy="30" rx="14" ry="8" fill="#f5f5f5"/>
-      <!-- Wing top (red-orange gradient) -->
-      <path d="M68 28 C55 14, 38 8, 28 12 C42 18, 52 22, 62 30 Z" fill="#e84d0e"/>
-      <path d="M68 28 C58 16, 44 11, 35 14 C46 20, 56 23, 64 30 Z" fill="#f5a623"/>
-      <!-- Wing lower -->
-      <path d="M68 32 C58 38, 44 40, 35 36 C46 33, 56 32, 66 30 Z" fill="#ffd580"/>
-      <!-- Tail feathers -->
-      <path d="M96 30 C105 24, 116 20, 122 22 C114 26, 106 28, 100 30 Z" fill="#f5a623"/>
-      <path d="M96 32 C105 36, 115 38, 120 36 C112 33, 105 32, 100 30 Z" fill="#e84d0e"/>
-      <!-- Head -->
-      <ellipse cx="76" cy="26" rx="8" ry="7" fill="#1a2d5a"/>
-      <!-- Eye -->
-      <circle cx="73" cy="24" r="1.8" fill="white"/>
-      <circle cx="73.4" cy="24.2" r="0.8" fill="#1a2d5a"/>
-      <!-- Beak -->
-      <path d="M68 26 L63 25 L65 27 Z" fill="#e84d0e"/>
-      <!-- White chest -->
-      <ellipse cx="80" cy="31" rx="7" ry="5" fill="#ffffff" opacity=".85"/>
-    </svg>
-    <div class="logo-text">
-      <span><span class="t1">Terno</span><span class="t2">Trip</span></span>
-      <span style="font-size:8px;color:#6b7a8d;font-weight:500;letter-spacing:.5px;margin-top:2px">INDIA TOURS</span>
-    </div>
+    <img src="logo.jpeg" alt="TernoTrip Logo" class="logo-img">
   </a>
 
   <nav class="nav">
