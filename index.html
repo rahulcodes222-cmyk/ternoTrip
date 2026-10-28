@@ -3,414 +3,460 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#f7f8f5">
-<title>TernoTrip — Thoughtful journeys</title>
-
+<meta name="theme-color" content="#fff">
+<title>TernoTrip — India's Favourite Tour Packages</title>
 <style>
 /* ── TOKENS ── */
 :root{
-  --forest:#0c4a43;--deep:#073f39;--mint:#e7f3ee;--cream:#f6f1e7;
-  --ink:#153e3a;--muted:#71827c;--line:#dfe8e2;--lime:#d9ef8a;
-  --shadow-sm:0 1px 3px rgba(10,40,30,.08);
-  --shadow-md:0 4px 16px rgba(10,40,30,.10);
-  --shadow-lg:0 8px 32px rgba(10,40,30,.13);
-  --radius:10px;
+  --navy:#1a2d5a;
+  --orange:#e84d0e;
+  --orange-light:#ff6b35;
+  --gold:#f5a623;
+  --bg:#f8f9fc;
+  --ink:#1a2332;
+  --muted:#6b7a8d;
+  --line:#e4e8f0;
+  --mint:#edf7f0;
+  --cream:#fef9f0;
+  --white:#ffffff;
+  --shadow-sm:0 1px 4px rgba(26,45,90,.08);
+  --shadow-md:0 4px 16px rgba(26,45,90,.12);
+  --shadow-lg:0 8px 32px rgba(26,45,90,.16);
+  --r:10px;
 }
 
-/* ── RESET ── */
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:#f7f8f5;color:var(--ink);font-family:Inter,Arial,sans-serif;font-size:13px;-webkit-font-smoothing:antialiased}
-.page{max-width:90%;margin:auto;padding:0 26px}
+body{background:var(--bg);color:var(--ink);font-family:Inter,Arial,sans-serif;font-size:13px;-webkit-font-smoothing:antialiased}
+.page{max-width:90%;margin:auto;padding:0 0}
 a{color:inherit;text-decoration:none}
 button,input{font:inherit}
-img{display:block}
+img{display:block;max-width:100%}
 
-/* ══════════════════════════════════════
+/* ══════════════════════════
    HEADER
-══════════════════════════════════════ */
+══════════════════════════ */
 header{
   position:sticky;top:0;z-index:100;
-  background:rgba(247,248,245,.92);
+  background:rgba(255,255,255,.96);
   backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(223,232,226,.7);
-  height:66px;
+  border-bottom:1px solid var(--line);
+  height:68px;
   display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;
+  box-shadow:0 2px 12px rgba(26,45,90,.06);
 }
-.logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:16px;letter-spacing:-.4px;color:var(--ink)}
-.logo-mark{
-  display:grid;place-items:center;
-  width:32px;height:32px;border-radius:9px;
-  background:var(--forest);color:#fff;font-size:16px;
-  box-shadow:0 2px 8px rgba(12,74,67,.3);
-}
-.nav{display:flex;gap:24px;color:#536a63;font-size:12px;font-weight:500}
-.nav a{position:relative;padding-bottom:2px;transition:color .2s}
-.nav a:hover{color:var(--forest)}
-.nav a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background:var(--lime);border-radius:2px;transform:scaleX(0);transition:transform .2s}
-.nav a:hover::after{transform:scaleX(1)}
-.nav-cta{
-  background:var(--forest);color:white;
-  padding:10px 18px;border-radius:6px;
-  font-size:11px;font-weight:700;letter-spacing:.3px;
-  transition:background .2s,transform .15s,box-shadow .2s;
-  box-shadow:0 2px 8px rgba(12,74,67,.25);
-}
-.nav-cta:hover{background:#0a3d37;transform:translateY(-1px);box-shadow:0 4px 14px rgba(12,74,67,.3)}
+/* LOGO */
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-img{height:42px;width:auto}
+.logo-text{display:flex;flex-direction:column;line-height:1}
+.logo-text .t1{font-size:18px;font-weight:800;letter-spacing:-.5px;color:var(--navy)}
+.logo-text .t2{font-size:18px;font-weight:800;letter-spacing:-.5px;color:var(--orange)}
+.logo-text span{display:inline}
 
-/* ══════════════════════════════════════
+.nav{display:flex;align-items:center;gap:28px;font-size:12.5px;font-weight:500;color:#4a5568}
+.nav a{transition:color .2s;position:relative;padding-bottom:2px}
+.nav a:hover{color:var(--orange)}
+.nav a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background:var(--orange);border-radius:2px;transform:scaleX(0);transition:transform .22s}
+.nav a:hover::after{transform:scaleX(1)}
+
+.nav-cta{
+  background:var(--orange);color:white;
+  padding:10px 20px;border-radius:6px;
+  font-size:12px;font-weight:700;letter-spacing:.2px;
+  transition:background .2s,transform .15s,box-shadow .2s;
+  box-shadow:0 3px 10px rgba(232,77,14,.3);
+}
+.nav-cta:hover{background:#c43d08;transform:translateY(-1px);box-shadow:0 5px 16px rgba(232,77,14,.38)}
+
+/* ══════════════════════════
    HERO
-══════════════════════════════════════ */
+══════════════════════════ */
 .hero{
-  height:clamp(300px,38vw,480px);
+  height:clamp(320px,40vw,500px);
   position:relative;overflow:hidden;
   border-radius:16px;
-  margin:22px 0 36px;
-  background:#0a2822;
+  margin:20px auto 36px;
+  background:#0a1628;
   color:white;
   isolation:isolate;
   box-shadow:var(--shadow-lg);
+  max-width:90%;
 }
-
-/* video layer */
-.hero-yt-wrap{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.hero-yt-wrap video{
+.hero-vid-wrap{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.hero-vid-wrap video{
   position:absolute;top:0;left:0;
-  width:100%;height:100%;
-  object-fit:cover;
-  opacity:0;
-  transition:opacity 1.4s ease;
+  width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity 1.4s ease;
 }
-.hero-yt-wrap video.active{opacity:1}
+.hero-vid-wrap video.active{opacity:1}
 
-/* layered gradient — more cinematic */
+/* gradient overlay */
 .hero::after{
   content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:
-    linear-gradient(110deg, rgba(4,28,22,.88) 0%, rgba(4,28,22,.45) 45%, rgba(4,28,22,.05) 75%),
-    linear-gradient(0deg,   rgba(4,28,22,.55) 0%, transparent 45%);
+    linear-gradient(105deg,rgba(10,18,40,.9) 0%,rgba(10,18,40,.5) 45%,rgba(10,18,40,.1) 75%),
+    linear-gradient(0deg,rgba(10,18,40,.6) 0%,transparent 45%);
 }
 
-/* hero copy */
 .hero-copy{
   position:absolute;z-index:2;
-  left:clamp(28px,5.5vw,68px);
+  left:clamp(28px,6vw,70px);
   top:50%;transform:translateY(-50%);
-  max-width:540px;
+  max-width:560px;
 }
-.hero-eyebrow{
+.hero-badge{
   display:inline-flex;align-items:center;gap:7px;
-  font-size:9px;text-transform:uppercase;letter-spacing:2.2px;
-  color:#c8e87e;font-weight:700;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.15);
+  font-size:9px;text-transform:uppercase;letter-spacing:2px;
+  color:#ffd580;font-weight:700;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,213,128,.4);
   backdrop-filter:blur(6px);
-  padding:5px 10px;border-radius:20px;
-  margin-bottom:16px;
+  padding:5px 12px;border-radius:20px;margin-bottom:18px;
 }
-.hero-eyebrow::before{content:'✦';font-size:7px}
+.hero-badge .flag{font-size:13px}
 .hero h1{
   font-family:Georgia,serif;
-  font-size:clamp(34px,5.2vw,62px);
-  font-weight:500;line-height:1.06;letter-spacing:-.8px;
+  font-size:clamp(32px,4.8vw,58px);
+  font-weight:600;line-height:1.07;letter-spacing:-.8px;
   margin:0 0 14px;
-  text-shadow:0 2px 20px rgba(0,0,0,.3);
+  text-shadow:0 2px 24px rgba(0,0,0,.35);
 }
-.hero h1 em{font-style:italic;color:#d9ef8a}
+.hero h1 span{color:#ffd580}
 .hero-sub{
-  font-size:12.5px;line-height:1.8;
-  color:rgba(220,236,228,.88);
-  max-width:380px;margin:0 0 26px;
+  font-size:13px;line-height:1.8;
+  color:rgba(220,228,240,.9);
+  max-width:400px;margin:0 0 26px;
 }
-
-/* hero buttons */
-.hero-actions{display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+.hero-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .btn-primary{
   display:inline-flex;align-items:center;gap:7px;
-  background:var(--lime);color:#173e35;
-  padding:13px 20px;border:0;border-radius:7px;
-  font-weight:800;font-size:11.5px;letter-spacing:.2px;cursor:pointer;
-  box-shadow:0 4px 14px rgba(217,239,138,.35);
+  background:var(--orange);color:white;
+  padding:13px 22px;border:0;border-radius:7px;
+  font-weight:800;font-size:12px;letter-spacing:.2px;cursor:pointer;
+  box-shadow:0 4px 14px rgba(232,77,14,.4);
   transition:background .2s,transform .15s,box-shadow .2s;
 }
-.btn-primary:hover{background:#c8e070;transform:translateY(-2px);box-shadow:0 6px 20px rgba(217,239,138,.45)}
+.btn-primary:hover{background:#c43d08;transform:translateY(-2px);box-shadow:0 6px 20px rgba(232,77,14,.5)}
 .btn-ghost{
   display:inline-flex;align-items:center;gap:7px;
-  border:1.5px solid rgba(255,255,255,.5);color:white;
-  background:rgba(255,255,255,.08);backdrop-filter:blur(8px);
-  padding:12px 18px;border-radius:7px;
-  font-weight:600;font-size:11.5px;cursor:pointer;
+  border:1.5px solid rgba(255,255,255,.55);color:white;
+  background:rgba(255,255,255,.1);backdrop-filter:blur(8px);
+  padding:12px 20px;border-radius:7px;
+  font-weight:600;font-size:12px;cursor:pointer;
   transition:background .2s,border-color .2s,transform .15s;
 }
-.btn-ghost:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.8);transform:translateY(-2px)}
+.btn-ghost:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.85);transform:translateY(-2px)}
 
-/* progress bar dots */
-.hero-controls{
-  position:absolute;bottom:20px;
-  left:clamp(28px,5.5vw,68px);
-  z-index:3;
-  display:flex;align-items:center;gap:10px;
+/* hero bottom bar */
+.hero-bottom{
+  position:absolute;bottom:0;left:0;right:0;z-index:3;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px clamp(28px,6vw,70px);
+  background:linear-gradient(0deg,rgba(10,18,40,.7),transparent);
 }
 .video-dots{display:flex;gap:6px}
 .video-dots span{
-  display:block;width:20px;height:3px;border-radius:2px;
+  display:block;width:22px;height:3px;border-radius:2px;
   background:rgba(255,255,255,.3);cursor:pointer;
   transition:background .3s,width .35s;
 }
-.video-dots span.active{background:#d9ef8a;width:32px}
+.video-dots span.active{background:#ffd580;width:34px}
+.slide-info{font-size:9px;letter-spacing:1.2px;color:rgba(255,255,255,.5);text-transform:uppercase}
 
-/* slide counter */
-.slide-counter{font-size:9px;letter-spacing:1px;color:rgba(255,255,255,.55)}
-
-/* bottom-right label */
-.vid-badge{
-  position:absolute;right:20px;bottom:20px;z-index:3;
-  font-size:8.5px;letter-spacing:1.3px;color:rgba(255,255,255,.5);
-  text-transform:uppercase;
+/* ══════════════════════════
+   TRUST BAR
+══════════════════════════ */
+.trust-bar{
+  display:flex;align-items:center;justify-content:center;gap:40px;
+  background:white;border-radius:var(--r);
+  padding:16px 28px;margin:0 auto 32px;
+  max-width:90%;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow-sm);
 }
+.trust-item{display:flex;align-items:center;gap:9px;font-size:11px;color:var(--muted)}
+.trust-item strong{color:var(--ink);font-size:13px;font-weight:800}
+.trust-icon{font-size:20px}
+.trust-divider{width:1px;height:32px;background:var(--line)}
 
-/* ══════════════════════════════════════
-   SECTION LAYOUT
-══════════════════════════════════════ */
-section{margin:0 0 32px}
-.section-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:18px}
-.eyebrow-dark{font-size:8px;letter-spacing:1.8px;text-transform:uppercase;color:#57918a;font-weight:700;margin-bottom:5px}
-.section-top h2{
-  font-family:Georgia,serif;
-  font-size:26px;font-weight:500;letter-spacing:-.4px;color:var(--ink);
-}
-.sub{font-size:10.5px;color:var(--muted);margin:5px 0 0;line-height:1.6}
+/* ══════════════════════════
+   SECTIONS
+══════════════════════════ */
+.section-wrap{max-width:90%;margin:0 auto}
+section{margin:0 0 36px}
+.section-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px}
+.eyebrow{font-size:8.5px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);font-weight:700;margin-bottom:5px}
+.section-top h2{font-family:Georgia,serif;font-size:26px;font-weight:500;letter-spacing:-.4px;color:var(--ink)}
+.sub{font-size:11px;color:var(--muted);margin:5px 0 0;line-height:1.6}
 .small-link{
-  font-size:10.5px;color:var(--forest);font-weight:700;white-space:nowrap;
+  font-size:10.5px;color:var(--navy);font-weight:700;
   display:inline-flex;align-items:center;gap:4px;
-  padding:7px 12px;border-radius:20px;
+  padding:8px 14px;border-radius:20px;
   border:1.5px solid var(--line);
-  transition:background .2s,border-color .2s;
+  transition:all .2s;white-space:nowrap;
 }
-.small-link:hover{background:var(--mint);border-color:#b5d0c5}
+.small-link:hover{background:var(--navy);color:white;border-color:var(--navy)}
 
-/* ══════════════════════════════════════
+/* ══════════════════════════
    TRIP CARDS
-══════════════════════════════════════ */
-.trips{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+══════════════════════════ */
+.trips{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .trip{
-  background:white;border:1px solid #e8eee8;
-  border-radius:var(--radius);overflow:hidden;
+  background:white;border:1px solid #e8ecf4;
+  border-radius:var(--r);overflow:hidden;
   box-shadow:var(--shadow-sm);
   transition:transform .25s,box-shadow .25s;
 }
-.trip:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
-.trip-photo{height:168px;position:relative;overflow:hidden;background:#d8e6db}
+.trip:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+.trip-photo{height:170px;position:relative;overflow:hidden;background:#d8e2f0}
 .trip-photo img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
-.trip:hover .trip-photo img{transform:scale(1.07)}
+.trip:hover .trip-photo img{transform:scale(1.08)}
 .pill{
   position:absolute;left:10px;top:10px;
-  border-radius:4px;padding:5px 8px;
+  border-radius:4px;padding:5px 9px;
   font-size:7.5px;font-weight:800;letter-spacing:.5px;
 }
-.pill-upcoming{background:#fff3c7;color:#7a5400}
-.pill-completed{background:#dcf0e8;color:#115c3b}
-.trip-content{padding:14px 14px 13px}
-.trip-content .eyebrow-dark{margin-bottom:3px}
+.pill-upcoming{background:#fff3d4;color:#8a5500}
+.pill-completed{background:#e0f2ea;color:#115c3b}
+.pill-popular{background:#fde8e0;color:#8a2000}
+.trip-content{padding:14px 15px 13px}
+.trip-content .eyebrow{margin-bottom:3px}
 .trip h3{font-family:Georgia,serif;font-size:17px;font-weight:500;line-height:1.3;margin:0 0 7px;color:var(--ink)}
-.trip p{font-size:10.5px;line-height:1.6;color:#7a8f86;margin:0 0 12px;min-height:33px}
+.trip p{font-size:10.5px;line-height:1.65;color:#7a8f9e;margin:0 0 12px;min-height:34px}
+.trip-meta{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.trip-meta span{font-size:9.5px;color:var(--muted);display:flex;align-items:center;gap:4px}
+.price-tag{
+  font-size:11px;font-weight:800;color:var(--orange);
+  background:#fff3ee;padding:3px 8px;border-radius:4px;
+}
 .trip-bottom{
-  border-top:1px solid #eef1eb;padding-top:10px;
+  border-top:1px solid #eef1f8;padding-top:10px;
   display:flex;justify-content:space-between;align-items:center;
-  font-size:9.5px;color:#8a9c92;
 }
 .trip-bottom a{
-  font-weight:700;color:var(--forest);font-size:10px;
+  font-weight:700;color:var(--navy);font-size:10.5px;
   display:inline-flex;align-items:center;gap:3px;
-  transition:gap .2s;
+  transition:gap .2s,color .2s;
 }
-.trip-bottom a:hover{gap:6px}
+.trip-bottom a:hover{gap:6px;color:var(--orange)}
 
-/* ══════════════════════════════════════
-   TESTIMONIALS
-══════════════════════════════════════ */
-.testimonials{
-  background:linear-gradient(135deg,#e4f0ea 0%,#d8ecdf 100%);
-  padding:28px 28px;border-radius:14px;
-  border:1px solid #c8e0d0;
+/* ══════════════════════════
+   WHY US STRIP
+══════════════════════════ */
+.why-strip{
+  background:linear-gradient(135deg,var(--navy) 0%,#243770 100%);
+  border-radius:14px;padding:32px 36px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+  margin:0 auto 36px;max-width:90%;
 }
-.testimonials .section-top{margin-bottom:18px}
+.why-item{text-align:center;color:white}
+.why-icon{font-size:28px;margin-bottom:10px}
+.why-item h4{font-size:14px;font-weight:700;margin-bottom:5px;color:#ffd580}
+.why-item p{font-size:10px;color:rgba(220,228,255,.75);line-height:1.6}
+
+/* ══════════════════════════
+   DESTINATIONS GRID
+══════════════════════════ */
+.dest-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.dest-card{
+  position:relative;border-radius:10px;overflow:hidden;
+  height:160px;cursor:pointer;
+  box-shadow:var(--shadow-sm);
+  transition:transform .25s,box-shadow .25s;
+}
+.dest-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.dest-card img{width:100%;height:100%;object-fit:cover;transition:transform .45s}
+.dest-card:hover img{transform:scale(1.08)}
+.dest-card::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(0deg,rgba(10,18,40,.75) 0%,rgba(10,18,40,.1) 55%);
+}
+.dest-label{
+  position:absolute;bottom:0;left:0;right:0;z-index:2;
+  padding:12px;color:white;
+}
+.dest-label strong{display:block;font-size:14px;font-weight:700}
+.dest-label span{font-size:9.5px;color:rgba(255,255,255,.75)}
+
+/* ══════════════════════════
+   TESTIMONIALS
+══════════════════════════ */
+.testimonials{
+  background:linear-gradient(135deg,#eef3ff 0%,#e8f0ff 100%);
+  padding:30px 32px;border-radius:14px;
+  border:1px solid #d4ddf8;
+  max-width:90%;margin:0 auto 36px;
+}
 .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .quote{
-  background:white;border-radius:10px;
-  padding:18px;
-  box-shadow:0 2px 10px rgba(10,40,30,.06);
-  border:1px solid rgba(200,224,208,.5);
+  background:white;border-radius:10px;padding:20px;
+  box-shadow:0 2px 10px rgba(26,45,90,.07);
+  border:1px solid rgba(212,221,248,.6);
   transition:transform .2s,box-shadow .2s;
 }
-.quote:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(10,40,30,.1)}
-.quote-stars{color:#d4a017;letter-spacing:2px;font-size:11px;margin-bottom:8px}
-.quote p{
-  font-family:Georgia,serif;
-  font-size:13.5px;font-style:italic;line-height:1.55;
-  color:#2a4f45;margin:0 0 14px;
-}
-.person{display:flex;align-items:center;gap:9px;font-size:10px;color:#5a7068}
+.quote:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.quote-stars{color:#f5a623;letter-spacing:2px;font-size:11px;margin-bottom:9px}
+.quote p{font-family:Georgia,serif;font-size:13px;font-style:italic;line-height:1.6;color:#2a3f6a;margin:0 0 15px}
+.person{display:flex;align-items:center;gap:9px;font-size:10px;color:var(--muted)}
 .avatar{
-  width:30px;height:30px;
-  display:grid;place-items:center;
-  background:linear-gradient(135deg,#a8d4be,#7bbfa4);
-  border-radius:50%;font-weight:800;font-size:10px;color:#fff;
-  flex-shrink:0;
+  width:32px;height:32px;display:grid;place-items:center;
+  background:linear-gradient(135deg,#e84d0e,#f5a623);
+  border-radius:50%;font-weight:800;font-size:11px;color:white;flex-shrink:0;
 }
 .person-info b{display:block;font-size:10.5px;color:var(--ink);font-weight:700}
 .person-info span{font-size:9.5px;color:var(--muted)}
 
-/* ══════════════════════════════════════
+/* ══════════════════════════
    JOURNAL
-══════════════════════════════════════ */
-.journal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+══════════════════════════ */
+.journal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .journal-card{
-  background:white;border-radius:var(--radius);overflow:hidden;
-  border:1px solid #e8eee8;
-  box-shadow:var(--shadow-sm);
+  background:white;border-radius:var(--r);overflow:hidden;
+  border:1px solid #e8ecf4;box-shadow:var(--shadow-sm);
   transition:transform .25s,box-shadow .25s;
 }
 .journal-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
-.journal-card-img{height:148px;overflow:hidden}
-.journal-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
-.journal-card:hover .journal-card-img img{transform:scale(1.07)}
-.journal-card-body{padding:13px 14px 14px}
-.journal-card .meta{
-  font-size:8px;color:#9aab9f;
-  text-transform:uppercase;letter-spacing:1px;
-  margin-bottom:7px;font-weight:600;
-}
-.journal-card h3{
-  font-family:Georgia,serif;
-  font-size:15.5px;font-weight:500;line-height:1.35;
-  margin:0 0 10px;color:var(--ink);
-}
-.journal-card .read{
-  display:inline-flex;align-items:center;gap:4px;
-  font-size:9.5px;color:var(--forest);font-weight:700;
-  transition:gap .2s;
-}
-.journal-card .read:hover{gap:7px}
+.jcard-img{height:150px;overflow:hidden}
+.jcard-img img{width:100%;height:100%;object-fit:cover;transition:transform .45s}
+.journal-card:hover .jcard-img img{transform:scale(1.08)}
+.jcard-body{padding:14px 15px}
+.jcard-meta{font-size:8px;color:#9aabb8;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px;font-weight:600}
+.journal-card h3{font-family:Georgia,serif;font-size:15px;font-weight:500;line-height:1.35;margin:0 0 10px;color:var(--ink)}
+.journal-card .read{display:inline-flex;align-items:center;gap:4px;font-size:9.5px;color:var(--navy);font-weight:700;transition:gap .2s,color .2s}
+.journal-card .read:hover{gap:7px;color:var(--orange)}
 
-/* ══════════════════════════════════════
+/* ══════════════════════════
    NEWSLETTER
-══════════════════════════════════════ */
+══════════════════════════ */
 .newsletter{
-  background:linear-gradient(135deg,#f5eedf 0%,#ede6d3 100%);
-  border-radius:14px;padding:30px 32px;
-  display:flex;align-items:center;justify-content:space-between;gap:24px;
-  margin:8px 0 30px;
-  border:1px solid #e2d9c4;
+  background:linear-gradient(135deg,#fff8ec 0%,#fef3e2 100%);
+  border-radius:14px;padding:32px 36px;
+  display:flex;align-items:center;justify-content:space-between;gap:28px;
+  margin:0 auto 32px;max-width:90%;
+  border:1px solid #f0ddb8;
   box-shadow:var(--shadow-sm);
 }
-.newsletter-left .eyebrow-dark{margin-bottom:6px}
-.newsletter h2{
-  font-family:Georgia,serif;
-  font-weight:500;font-size:22px;margin:0 0 6px;color:var(--ink);
-}
-.newsletter p{font-size:10.5px;color:#7b837a;line-height:1.65}
+.nl-left .eyebrow{margin-bottom:6px}
+.newsletter h2{font-family:Georgia,serif;font-weight:500;font-size:22px;margin:0 0 6px;color:var(--ink)}
+.newsletter p{font-size:11px;color:var(--muted);line-height:1.7}
 .signup{
-  display:flex;gap:7px;min-width:310px;
+  display:flex;gap:0;min-width:320px;
   background:white;border-radius:8px;
-  padding:5px 5px 5px 14px;
-  border:1.5px solid #d5ccb5;
-  box-shadow:0 2px 8px rgba(0,0,0,.05);
+  border:1.5px solid #e0cfa8;
+  box-shadow:0 2px 8px rgba(0,0,0,.04);
+  overflow:hidden;
   transition:border-color .2s,box-shadow .2s;
 }
-.signup:focus-within{border-color:#77a69a;box-shadow:0 0 0 3px rgba(119,166,154,.15)}
+.signup:focus-within{border-color:var(--orange);box-shadow:0 0 0 3px rgba(232,77,14,.12)}
 .signup input{
   min-width:0;flex:1;border:0;background:transparent;
-  font-size:10.5px;outline:none;color:var(--ink);
+  padding:12px 14px;font-size:11px;outline:none;color:var(--ink);
 }
-.signup input::placeholder{color:#b0b8b0}
+.signup input::placeholder{color:#b0b8be}
 .signup button{
-  border:0;border-radius:5px;
-  background:var(--forest);color:#fff;
-  padding:10px 16px;font-size:10.5px;font-weight:700;
+  border:0;background:var(--orange);color:white;
+  padding:12px 18px;font-size:11px;font-weight:700;
   cursor:pointer;white-space:nowrap;
-  transition:background .2s,transform .15s;
+  transition:background .2s;
 }
-.signup button:hover{background:#0a3d37;transform:scale(1.02)}
+.signup button:hover{background:#c43d08}
 
-/* ══════════════════════════════════════
+/* ══════════════════════════
    FOOTER
-══════════════════════════════════════ */
+══════════════════════════ */
 footer{
-  background:var(--deep);color:#dce9e2;
+  background:var(--navy);color:#c8d4e8;
   border-radius:14px 14px 0 0;
-  padding:32px 28px 22px;
-  display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:28px;
-  margin:0 -14px;
+  padding:36px 36px 22px;
+  display:grid;grid-template-columns:1.8fr repeat(3,1fr);gap:30px;
+  margin:0 auto;max-width:90%;
 }
-.foot-brand{font-size:15px;font-weight:800;display:flex;align-items:center;gap:8px;margin-bottom:10px}
-.foot-brand .logo-mark{background:#d7ef8a;color:var(--deep);box-shadow:none}
-footer .foot-desc{font-size:9.5px;color:#b7cdc4;line-height:1.75;max-width:200px;margin-bottom:14px}
-footer .foot-email{font-size:9.5px;color:#90b8ad;display:inline-flex;align-items:center;gap:5px}
-footer h4{font-size:10px;color:rgba(255,255,255,.9);margin:0 0 12px;letter-spacing:.5px;text-transform:uppercase}
-footer a{display:block;font-size:9.5px;color:#a8c4ba;margin:7px 0;transition:color .2s}
-footer a:hover{color:#d9ef8a}
+.foot-logo{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.foot-logo-img{height:38px;width:auto;filter:brightness(0) invert(1) opacity(.9)}
+.foot-brand-name{font-size:16px;font-weight:800;color:white}
+.foot-brand-name span{color:#ffd580}
+footer .foot-desc{font-size:9.5px;color:#8fa4c8;line-height:1.8;max-width:210px;margin-bottom:16px}
+.foot-contact{font-size:9.5px;color:#8fa4c8;display:flex;flex-direction:column;gap:5px}
+.foot-contact a{color:#a8c0d8;transition:color .2s}
+.foot-contact a:hover{color:#ffd580}
+footer h4{font-size:9.5px;color:rgba(255,255,255,.85);margin:0 0 13px;letter-spacing:.8px;text-transform:uppercase}
+footer a{display:block;font-size:9.5px;color:#8fa4c8;margin:7px 0;transition:color .2s}
+footer a:hover{color:#ffd580}
+.footer-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(255,213,128,.1);border:1px solid rgba(255,213,128,.25);
+  padding:5px 10px;border-radius:4px;margin-top:10px;
+  font-size:9px;color:#ffd580;font-weight:600;letter-spacing:.5px;
+}
 .copyright{
   grid-column:1/-1;
-  border-top:1px solid rgba(255,255,255,.1);
-  padding-top:14px;margin-top:4px;
+  border-top:1px solid rgba(255,255,255,.08);
+  padding-top:16px;margin-top:4px;
   display:flex;justify-content:space-between;align-items:center;
-  font-size:8.5px;color:#7a9f94;
+  font-size:8.5px;color:#5a6e8a;
 }
 
-/* ══════════════════════════════════════
+/* ══════════════════════════
    TOAST
-══════════════════════════════════════ */
+══════════════════════════ */
 .toast{
   position:fixed;bottom:24px;left:50%;
   transform:translate(-50%,20px);opacity:0;
-  background:var(--deep);color:white;
+  background:var(--navy);color:white;
   padding:13px 20px;border-radius:8px;
   font-size:12px;font-weight:500;
   box-shadow:0 8px 24px rgba(0,0,0,.2);
   transition:.25s;pointer-events:none;
   display:flex;align-items:center;gap:8px;
 }
-.toast::before{content:'✓';
-  background:#d9ef8a;color:var(--deep);
-  width:18px;height:18px;border-radius:50%;
-  display:grid;place-items:center;font-size:10px;font-weight:900;flex-shrink:0;
+.toast::before{
+  content:'✓';background:var(--orange);color:white;
+  width:20px;height:20px;border-radius:50%;
+  display:grid;place-items:center;font-size:11px;font-weight:900;flex-shrink:0;
 }
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
-/* ══════════════════════════════════════
+/* ══════════════════════════
    RESPONSIVE
-══════════════════════════════════════ */
-@media(min-width:1100px){
-  .page{padding:0 36px}
-  .trip-photo{height:185px}
-  .journal-card-img{height:160px}
+══════════════════════════ */
+@media(min-width:1200px){
+  .trip-photo{height:190px}
+  .jcard-img{height:165px}
+  .dest-card{height:175px}
+}
+@media(max-width:900px){
+  .why-strip{grid-template-columns:repeat(2,1fr)}
+  .dest-grid{grid-template-columns:repeat(2,1fr)}
+  .trust-bar{gap:20px;flex-wrap:wrap}
 }
 @media(max-width:700px){
-  .page{padding:0 16px}
-  header{height:60px}
+  header{padding:0 16px;height:62px}
   .nav{display:none}
-  .nav-cta{padding:9px 13px;font-size:10px}
-  .hero{height:420px;margin:14px 0 26px;border-radius:12px}
+  .nav-cta{padding:9px 14px;font-size:11px}
+  .hero{height:430px;margin:14px auto 24px;border-radius:12px}
   .hero-copy{left:22px;right:20px}
-  .hero h1{font-size:36px}
-  .hero-sub{max-width:290px;font-size:11.5px}
+  .hero h1{font-size:34px}
+  .hero-sub{font-size:11.5px;max-width:290px}
   .hero-actions{gap:9px}
-  .btn-primary,.btn-ghost{font-size:10.5px;padding:11px 14px}
-  .section-top{align-items:flex-start;flex-direction:column;gap:10px}
+  .btn-primary,.btn-ghost{font-size:10.5px;padding:11px 15px}
+  .trust-bar{padding:14px 16px;gap:14px}
+  .trust-divider{display:none}
+  .section-top{flex-direction:column;gap:10px}
   .section-top h2{font-size:22px}
-  .trips{grid-template-columns:1fr;gap:13px}
+  .trips{grid-template-columns:1fr;gap:14px}
   .trip-photo{height:200px}
-  .trip p{min-height:0}
-  .quotes{grid-template-columns:1fr;gap:13px}
+  .why-strip{grid-template-columns:1fr 1fr;padding:22px 18px;gap:16px}
+  .dest-grid{grid-template-columns:repeat(2,1fr)}
+  .dest-card{height:140px}
+  .quotes{grid-template-columns:1fr;gap:14px}
   .journal-grid{grid-template-columns:1fr;gap:14px}
-  .journal-card-img{height:200px}
-  .newsletter{flex-direction:column;padding:22px 20px;gap:18px}
+  .jcard-img{height:200px}
+  .newsletter{flex-direction:column;padding:24px 20px;gap:18px}
   .signup{min-width:0;width:100%}
-  footer{grid-template-columns:1fr 1fr;padding:24px 18px;gap:18px;margin:0 -7px}
+  footer{grid-template-columns:1fr 1fr;padding:26px 18px;gap:20px}
   .foot-intro{grid-column:1/-1}
-  .copyright{grid-column:1/-1;flex-direction:column;gap:5px;text-align:center}
+  .copyright{grid-column:1/-1;flex-direction:column;gap:6px;text-align:center}
 }
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 </style>
@@ -418,29 +464,56 @@ footer a:hover{color:#d9ef8a}
 <body>
 <div class="page">
 
-<!-- ══════════════════════════════════════
+<!-- ══════════════════════════
      HEADER
-══════════════════════════════════════ -->
+══════════════════════════ -->
 <header>
   <a href="#" class="logo">
-    <span class="logo-mark">✳</span> TernoTrip
+    <!-- Inline SVG logo — bird + TernoTrip text matching the brand logo -->
+    <svg class="logo-img" viewBox="0 0 160 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Bird body -->
+      <ellipse cx="82" cy="30" rx="14" ry="8" fill="#f5f5f5"/>
+      <!-- Wing top (red-orange gradient) -->
+      <path d="M68 28 C55 14, 38 8, 28 12 C42 18, 52 22, 62 30 Z" fill="#e84d0e"/>
+      <path d="M68 28 C58 16, 44 11, 35 14 C46 20, 56 23, 64 30 Z" fill="#f5a623"/>
+      <!-- Wing lower -->
+      <path d="M68 32 C58 38, 44 40, 35 36 C46 33, 56 32, 66 30 Z" fill="#ffd580"/>
+      <!-- Tail feathers -->
+      <path d="M96 30 C105 24, 116 20, 122 22 C114 26, 106 28, 100 30 Z" fill="#f5a623"/>
+      <path d="M96 32 C105 36, 115 38, 120 36 C112 33, 105 32, 100 30 Z" fill="#e84d0e"/>
+      <!-- Head -->
+      <ellipse cx="76" cy="26" rx="8" ry="7" fill="#1a2d5a"/>
+      <!-- Eye -->
+      <circle cx="73" cy="24" r="1.8" fill="white"/>
+      <circle cx="73.4" cy="24.2" r="0.8" fill="#1a2d5a"/>
+      <!-- Beak -->
+      <path d="M68 26 L63 25 L65 27 Z" fill="#e84d0e"/>
+      <!-- White chest -->
+      <ellipse cx="80" cy="31" rx="7" ry="5" fill="#ffffff" opacity=".85"/>
+    </svg>
+    <div class="logo-text">
+      <span><span class="t1">Terno</span><span class="t2">Trip</span></span>
+      <span style="font-size:8px;color:#6b7a8d;font-weight:500;letter-spacing:.5px;margin-top:2px">INDIA TOURS</span>
+    </div>
   </a>
+
   <nav class="nav">
-    <a href="#upcoming">Upcoming trips</a>
-    <a href="#trips">Completed trips</a>
+    <a href="#upcoming">Upcoming Trips</a>
+    <a href="#destinations">Destinations</a>
+    <a href="#trips">Completed</a>
     <a href="#reviews">Reviews</a>
-    <a href="#journal">Journal</a>
+    <a href="#journal">Blog</a>
   </nav>
-  <a class="nav-cta" href="#newsletter">Plan your trip ↗</a>
+  <a class="nav-cta" href="#contact">📞 Book Now</a>
 </header>
 
 <main>
 
-<!-- ══════════════════════════════════════
+<!-- ══════════════════════════
      HERO
-══════════════════════════════════════ -->
-<section class="hero" aria-label="Travel video banner">
-  <div class="hero-yt-wrap" id="heroWrap">
+══════════════════════════ -->
+<section class="hero" aria-label="India travel video">
+  <div class="hero-vid-wrap" id="heroWrap">
     <video class="active" id="vid0" muted playsinline autoplay>
       <source src="126837-737020173_medium.mp4" type="video/mp4">
     </video>
@@ -453,319 +526,391 @@ footer a:hover{color:#d9ef8a}
   </div>
 
   <div class="hero-copy">
-    <div class="hero-eyebrow">Your next chapter starts here</div>
-    <h1>Travel more.<br><em>Feel everything.</em></h1>
-    <p class="hero-sub">Slow down, go a little further, and discover the places that make you see the world differently.</p>
+    <div class="hero-badge"><span class="flag">🇮🇳</span> India Domestic Tours Only</div>
+    <h1>Discover the <span>Soul of India</span></h1>
+    <p class="hero-sub">From the snow-capped Himalayas to the golden beaches of Goa — explore India like never before with our curated tour packages.</p>
     <div class="hero-actions">
-      <a class="btn-primary" href="#upcoming">✦ Upcoming Trips</a>
-      <a class="btn-ghost" href="#trips">Completed Trips ↗</a>
+      <a class="btn-primary" href="#upcoming">🗺️ Explore Packages</a>
+      <a class="btn-ghost" href="#contact">Talk to an Expert ↗</a>
     </div>
   </div>
 
-  <div class="hero-controls">
+  <div class="hero-bottom">
     <div class="video-dots" id="videoDots">
       <span class="active"></span><span></span><span></span>
     </div>
-    <span class="slide-counter" id="slideCounter">1 / 3</span>
+    <span class="slide-info" id="slideCounter">1 / 3</span>
   </div>
-  <div class="vid-badge">✦ A little more wonder, everywhere</div>
 </section>
 
-<!-- ══════════════════════════════════════
+<!-- ══════════════════════════
+     TRUST BAR
+══════════════════════════ -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="trust-icon">🏆</span><div><strong>500+</strong><br>Happy Travellers</div></div>
+  <div class="trust-divider"></div>
+  <div class="trust-item"><span class="trust-icon">📍</span><div><strong>25+</strong><br>Indian Destinations</div></div>
+  <div class="trust-divider"></div>
+  <div class="trust-item"><span class="trust-icon">⭐</span><div><strong>4.9/5</strong><br>Average Rating</div></div>
+  <div class="trust-divider"></div>
+  <div class="trust-item"><span class="trust-icon">🛡️</span><div><strong>100%</strong><br>Safe & Trusted</div></div>
+  <div class="trust-divider"></div>
+  <div class="trust-item"><span class="trust-icon">💳</span><div><strong>Easy</strong><br>EMI Available</div></div>
+</div>
+
+<!-- ══════════════════════════
+     POPULAR DESTINATIONS
+══════════════════════════ -->
+<section class="section-wrap" id="destinations">
+  <div class="section-top">
+    <div>
+      <div class="eyebrow">Top picks across India</div>
+      <h2>Popular Destinations</h2>
+      <p class="sub">From mountains to beaches — India has it all.</p>
+    </div>
+    <a class="small-link" href="#upcoming">View all packages ↗</a>
+  </div>
+  <div class="dest-grid">
+    <div class="dest-card">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80" alt="Manali Himachal Pradesh">
+      <div class="dest-label"><strong>Manali</strong><span>Himachal Pradesh</span></div>
+    </div>
+    <div class="dest-card">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=600&q=80" alt="Goa beaches">
+      <div class="dest-label"><strong>Goa</strong><span>Beach Paradise</span></div>
+    </div>
+    <div class="dest-card">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80" alt="Rajasthan Jaipur">
+      <div class="dest-label"><strong>Rajasthan</strong><span>Land of Royals</span></div>
+    </div>
+    <div class="dest-card">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=600&q=80" alt="Kerala backwaters">
+      <div class="dest-label"><strong>Kerala</strong><span>God's Own Country</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════
+     WHY CHOOSE US
+══════════════════════════ -->
+<div class="why-strip">
+  <div class="why-item"><div class="why-icon">🗺️</div><h4>Curated Itineraries</h4><p>Every trip is hand-crafted by our local India travel experts</p></div>
+  <div class="why-item"><div class="why-icon">🚌</div><h4>All-Inclusive Packages</h4><p>Transport, stays, meals & sightseeing — all in one price</p></div>
+  <div class="why-item"><div class="why-icon">👥</div><h4>Small Group Tours</h4><p>Intimate groups of 8–16 for a personal travel experience</p></div>
+  <div class="why-item"><div class="why-icon">📞</div><h4>24/7 Support</h4><p>Our team is always on call while you're on the road</p></div>
+</div>
+
+<!-- ══════════════════════════
      UPCOMING TRIPS
-══════════════════════════════════════ -->
-<section id="upcoming">
+══════════════════════════ -->
+<section class="section-wrap" id="upcoming">
   <div class="section-top">
     <div>
-      <div class="eyebrow-dark">What's next on the map</div>
+      <div class="eyebrow">Book before seats fill up</div>
       <h2>Upcoming Trips</h2>
-      <p class="sub">Reserve your spot before these journeys fill up.</p>
+      <p class="sub">Fixed departure dates — reserve your spot today.</p>
     </div>
-    <a class="small-link" href="#newsletter">Get early access ↗</a>
+    <a class="small-link" href="#contact">Get early access ↗</a>
   </div>
   <div class="trips">
     <article class="trip">
       <div class="trip-photo">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=850&q=85" alt="Morocco medina alley">
-        <span class="pill pill-upcoming">UPCOMING · MAR 2025</span>
+        <img loading="lazy" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=850&q=85" alt="Manali Spiti Valley">
+        <span class="pill pill-upcoming">UPCOMING · DEC 2024</span>
       </div>
       <div class="trip-content">
-        <div class="eyebrow-dark">MOROCCO</div>
-        <h3>Marrakech & the Atlas Mountains</h3>
-        <p>Wander the medina, sleep under stars, and taste a country that never stops surprising you.</p>
-        <div class="trip-bottom"><span>◷ 8 days · Small group</span><a href="#newsletter">Reserve a spot ↗</a></div>
+        <div class="eyebrow">HIMACHAL PRADESH</div>
+        <h3>Manali & Spiti Valley Winter Tour</h3>
+        <p>Snow-covered roads, frozen lakes and the magic of Himalayan villages in winter.</p>
+        <div class="trip-meta">
+          <span>◷ 7 Days / 6 Nights</span>
+          <span class="price-tag">₹18,999/person</span>
+        </div>
+        <div class="trip-bottom"><span>👥 Small group · 12 seats</span><a href="#contact">Book Now ↗</a></div>
       </div>
     </article>
     <article class="trip">
       <div class="trip-photo">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1501179691627-eeaa65ea017c?auto=format&fit=crop&w=850&q=85" alt="Greek islands blue domes">
-        <span class="pill pill-upcoming">UPCOMING · APR 2025</span>
+        <img loading="lazy" src="https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=850&q=85" alt="Kerala Backwaters">
+        <span class="pill pill-upcoming">UPCOMING · JAN 2025</span>
       </div>
       <div class="trip-content">
-        <div class="eyebrow-dark">GREECE</div>
-        <h3>The quieter side of the Greek islands</h3>
-        <p>Beyond the crowds — slower islands, hidden coves, and evenings that go on forever.</p>
-        <div class="trip-bottom"><span>◷ 9 days · Island hop</span><a href="#newsletter">Reserve a spot ↗</a></div>
+        <div class="eyebrow">KERALA</div>
+        <h3>Kerala Backwaters & Munnar Tea Hills</h3>
+        <p>Houseboat stays, misty tea gardens and the lush green of South India.</p>
+        <div class="trip-meta">
+          <span>◷ 6 Days / 5 Nights</span>
+          <span class="price-tag">₹15,499/person</span>
+        </div>
+        <div class="trip-bottom"><span>👥 Small group · 14 seats</span><a href="#contact">Book Now ↗</a></div>
       </div>
     </article>
     <article class="trip">
       <div class="trip-photo">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=850&q=85" alt="Vietnam rice fields">
-        <span class="pill pill-upcoming">UPCOMING · MAY 2025</span>
+        <img loading="lazy" src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=850&q=85" alt="Rajasthan Desert">
+        <span class="pill pill-upcoming">UPCOMING · FEB 2025</span>
       </div>
       <div class="trip-content">
-        <div class="eyebrow-dark">VIETNAM</div>
-        <h3>Northern Vietnam: rice, roads & rivers</h3>
-        <p>Winding mountain passes, floating villages, and a cuisine that stops you mid-conversation.</p>
-        <div class="trip-bottom"><span>◷ 10 days · Cultural</span><a href="#newsletter">Reserve a spot ↗</a></div>
+        <div class="eyebrow">RAJASTHAN</div>
+        <h3>Royal Rajasthan — Jaipur to Jaisalmer</h3>
+        <p>Majestic forts, camel safaris and the golden dunes of the Thar Desert.</p>
+        <div class="trip-meta">
+          <span>◷ 8 Days / 7 Nights</span>
+          <span class="price-tag">₹22,999/person</span>
+        </div>
+        <div class="trip-bottom"><span>👥 Small group · 10 seats</span><a href="#contact">Book Now ↗</a></div>
       </div>
     </article>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
+<!-- ══════════════════════════
      COMPLETED TRIPS
-══════════════════════════════════════ -->
-<section id="trips">
+══════════════════════════ -->
+<section class="section-wrap" id="trips">
   <div class="section-top">
     <div>
-      <div class="eyebrow-dark">Real journeys, real memories</div>
+      <div class="eyebrow">Real journeys, real memories</div>
       <h2>Completed Trips</h2>
-      <p class="sub">A look back at the places, people and moments that made these journeys unforgettable.</p>
+      <p class="sub">A look back at the beautiful places we've explored together.</p>
     </div>
-    <a class="small-link" href="#journal">Explore experiences ↗</a>
+    <a class="small-link" href="#journal">Read trip stories ↗</a>
   </div>
   <div class="trips">
     <article class="trip">
       <div class="trip-photo">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=850&q=85" alt="Green rice terraces in Bali">
-        <span class="pill pill-completed">COMPLETED · 7 DAYS</span>
+        <img loading="lazy" src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=850&q=85" alt="Goa beaches">
+        <span class="pill pill-completed">COMPLETED · OCT 2024</span>
       </div>
       <div class="trip-content">
-        <div class="eyebrow-dark">INDONESIA</div>
-        <h3>Bali, a beautiful kind of slow</h3>
-        <p>Mountain mornings, temple trails, and the art of doing a little less.</p>
-        <div class="trip-bottom"><span>◷ 7 days · Small group</span><a href="#newsletter">Read the story ↗</a></div>
+        <div class="eyebrow">GOA</div>
+        <h3>Goa — Sun, Sand & Serenity</h3>
+        <p>North Goa's lively beaches, South Goa's quiet coves and spice plantations.</p>
+        <div class="trip-meta"><span>◷ 5 Days / 4 Nights</span><span class="price-tag">₹12,999</span></div>
+        <div class="trip-bottom"><span>⭐ 4.9 · 22 travellers</span><a href="#reviews">Read story ↗</a></div>
       </div>
     </article>
     <article class="trip">
       <div class="trip-photo">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=850&q=85" alt="Alpine peaks and mountain lake">
-        <span class="pill pill-completed">COMPLETED · 6 DAYS</span>
+        <img loading="lazy" src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=850&q=85" alt="Meghalaya living root bridges">
+        <span class="pill pill-completed">COMPLETED · SEP 2024</span>
       </div>
       <div class="trip-content">
-        <div class="eyebrow-dark">ITALY</div>
-        <h3>Summer in the Dolomites</h3>
-        <p>Clear lakes, quiet trails and the kind of views that reset everything.</p>
-        <div class="trip-bottom"><span>◷ 6 days · Nature</span><a href="#newsletter">Read the story ↗</a></div>
+        <div class="eyebrow">MEGHALAYA</div>
+        <h3>Meghalaya — Abode of Clouds</h3>
+        <p>Living root bridges, crystal-clear rivers and the wettest place on Earth.</p>
+        <div class="trip-meta"><span>◷ 6 Days / 5 Nights</span><span class="price-tag">₹16,499</span></div>
+        <div class="trip-bottom"><span>⭐ 5.0 · 18 travellers</span><a href="#reviews">Read story ↗</a></div>
       </div>
     </article>
     <article class="trip">
       <div class="trip-photo">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=850&q=85" alt="Lisbon street with tram">
-        <span class="pill pill-completed">COMPLETED · 5 DAYS</span>
+        <img loading="lazy" src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=850&q=85" alt="Ladakh mountains">
+        <span class="pill pill-completed">COMPLETED · AUG 2024</span>
       </div>
       <div class="trip-content">
-        <div class="eyebrow-dark">PORTUGAL</div>
-        <h3>Lisbon, one neighbourhood at a time</h3>
-        <p>Slow mornings, local cafés and little corners worth getting lost in.</p>
-        <div class="trip-bottom"><span>◷ 5 days · City break</span><a href="#newsletter">Read the story ↗</a></div>
+        <div class="eyebrow">LADAKH</div>
+        <h3>Ladakh — Land of High Passes</h3>
+        <p>Pangong Lake, Nubra Valley, monasteries and the world's highest roads.</p>
+        <div class="trip-meta"><span>◷ 9 Days / 8 Nights</span><span class="price-tag">₹28,999</span></div>
+        <div class="trip-bottom"><span>⭐ 4.8 · 16 travellers</span><a href="#reviews">Read story ↗</a></div>
       </div>
     </article>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
+<!-- ══════════════════════════
      TESTIMONIALS
-══════════════════════════════════════ -->
+══════════════════════════ -->
 <section class="testimonials" id="reviews">
   <div class="section-top">
     <div>
-      <div class="eyebrow-dark">A few words from the road</div>
-      <h2>What travellers are saying</h2>
+      <div class="eyebrow">From our travellers</div>
+      <h2>What people are saying</h2>
     </div>
   </div>
   <div class="quotes">
     <article class="quote">
       <div class="quote-stars">★★★★★</div>
-      <p>"It came down to the small moments. The morning light, the long lunches, and all the little things in between."</p>
+      <p>"The Ladakh trip was a dream. TernoTrip handled everything — flights, stays, permits. I just had to show up and enjoy!"</p>
+      <div class="person">
+        <span class="avatar">RK</span>
+        <div class="person-info"><b>Rohit Kumar</b><span>Travelled to Ladakh</span></div>
+      </div>
+    </article>
+    <article class="quote">
+      <div class="quote-stars">★★★★★</div>
+      <p>"Kerala backwaters trip was beyond expectations. The houseboat stay and the sunset views — absolutely magical!"</p>
+      <div class="person">
+        <span class="avatar">PS</span>
+        <div class="person-info"><b>Priya Sharma</b><span>Travelled to Kerala</span></div>
+      </div>
+    </article>
+    <article class="quote">
+      <div class="quote-stars">★★★★★</div>
+      <p>"Rajasthan with TernoTrip was like stepping into a history book. The small group made it so personal and fun!"</p>
       <div class="person">
         <span class="avatar">AM</span>
-        <div class="person-info"><b>Alex Morgan</b><span>Travelled to Bali</span></div>
-      </div>
-    </article>
-    <article class="quote">
-      <div class="quote-stars">★★★★★</div>
-      <p>"The perfect balance — everything taken care of, but still feeling like we were discovering places on our own."</p>
-      <div class="person">
-        <span class="avatar">JL</span>
-        <div class="person-info"><b>Jamie Lee</b><span>Travelled to the Dolomites</span></div>
-      </div>
-    </article>
-    <article class="quote">
-      <div class="quote-stars">★★★★★</div>
-      <p>"We didn't just visit places. We felt like we belonged there, even briefly. Such a thoughtful way to travel."</p>
-      <div class="person">
-        <span class="avatar">SR</span>
-        <div class="person-info"><b>Sam Rivera</b><span>Travelled to Japan</span></div>
+        <div class="person-info"><b>Arjun Mehta</b><span>Travelled to Rajasthan</span></div>
       </div>
     </article>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
+<!-- ══════════════════════════
      JOURNAL
-══════════════════════════════════════ -->
-<section id="journal">
+══════════════════════════ -->
+<section class="section-wrap" id="journal">
   <div class="section-top">
     <div>
-      <div class="eyebrow-dark">Little moments, told well</div>
-      <h2>The travel journal</h2>
+      <div class="eyebrow">Travel tips & stories</div>
+      <h2>The Travel Journal</h2>
     </div>
-    <a class="small-link" href="#newsletter">Read all stories ↗</a>
+    <a class="small-link" href="#contact">Read all stories ↗</a>
   </div>
   <div class="journal-grid">
     <article class="journal-card">
-      <div class="journal-card-img">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=850&q=85" alt="Colourful Italian village">
-      </div>
-      <div class="journal-card-body">
-        <div class="meta">CITY GUIDES · 5 MIN READ</div>
-        <h3>Kyoto in autumn: a slower way to explore</h3>
-        <a class="read" href="#newsletter">Read story ↗</a>
+      <div class="jcard-img"><img loading="lazy" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=850&q=85" alt="Himalayas"></div>
+      <div class="jcard-body">
+        <div class="jcard-meta">TRAVEL TIPS · 5 MIN READ</div>
+        <h3>Best time to visit Manali & Spiti Valley</h3>
+        <a class="read" href="#contact">Read story ↗</a>
       </div>
     </article>
     <article class="journal-card">
-      <div class="journal-card-img">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=850&q=85" alt="Hikers looking toward mountain peaks">
-      </div>
-      <div class="journal-card-body">
-        <div class="meta">SLOW TRAVEL · 7 MIN READ</div>
-        <h3>The small-group trip, reimagined</h3>
-        <a class="read" href="#newsletter">Read story ↗</a>
+      <div class="jcard-img"><img loading="lazy" src="https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=850&q=85" alt="Kerala"></div>
+      <div class="jcard-body">
+        <div class="jcard-meta">DESTINATION GUIDE · 7 MIN READ</div>
+        <h3>Kerala in 6 days: the perfect itinerary</h3>
+        <a class="read" href="#contact">Read story ↗</a>
       </div>
     </article>
     <article class="journal-card">
-      <div class="journal-card-img">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=850&q=85" alt="Cosy cabin in nature">
-      </div>
-      <div class="journal-card-body">
-        <div class="meta">STAYS & SPACES · 4 MIN READ</div>
-        <h3>Pack lighter. Bring back more.</h3>
-        <a class="read" href="#newsletter">Read story ↗</a>
+      <div class="jcard-img"><img loading="lazy" src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=850&q=85" alt="Rajasthan"></div>
+      <div class="jcard-body">
+        <div class="jcard-meta">SLOW TRAVEL · 4 MIN READ</div>
+        <h3>Why small-group tours are better in Rajasthan</h3>
+        <a class="read" href="#contact">Read story ↗</a>
       </div>
     </article>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
+<!-- ══════════════════════════
      NEWSLETTER
-══════════════════════════════════════ -->
-<section class="newsletter" id="newsletter">
-  <div class="newsletter-left">
-    <div class="eyebrow-dark">A little inspiration for your next trip</div>
-    <h2>Good journeys start with a little inspiration.</h2>
-    <p>Travel notes, hidden gems and fresh journey ideas — delivered occasionally.</p>
+══════════════════════════ -->
+<section class="newsletter" id="contact">
+  <div class="nl-left">
+    <div class="eyebrow">Stay in the loop</div>
+    <h2>Get exclusive India tour deals first.</h2>
+    <p>Early bird discounts, new destinations and travel tips — delivered to your inbox.</p>
   </div>
   <form class="signup" id="signup">
-    <input id="email" type="email" placeholder="Your email address" aria-label="Your email address" required>
-    <button type="submit">Count me in ↗</button>
+    <input type="email" placeholder="Enter your email address" aria-label="Email" required>
+    <button type="submit">Get Deals ↗</button>
   </form>
 </section>
 
 </main>
 
-<!-- ══════════════════════════════════════
+<!-- ══════════════════════════
      FOOTER
-══════════════════════════════════════ -->
+══════════════════════════ -->
 <footer>
   <div class="foot-intro">
-    <div class="foot-brand"><span class="logo-mark">✳</span> TernoTrip</div>
-    <p class="foot-desc">Thoughtful travel for curious souls. Find your people, places and perspective.</p>
-    <span class="foot-email">✉ hello@ternotrip.com</span>
+    <div class="foot-logo">
+      <svg height="38" viewBox="0 0 80 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="42" cy="19" rx="10" ry="6" fill="rgba(255,255,255,.15)"/>
+        <path d="M34 18 C26 9, 16 5, 10 8 C20 13, 28 16, 33 21 Z" fill="#e84d0e"/>
+        <path d="M34 18 C27 10, 19 7, 13 9 C22 14, 29 16, 33 21 Z" fill="#f5a623"/>
+        <path d="M34 21 C27 26, 19 27, 14 24 C22 22, 29 21, 33 20 Z" fill="#ffd580"/>
+        <path d="M52 19 C58 15, 65 12, 68 14 C63 17, 58 18, 54 20 Z" fill="#f5a623"/>
+        <path d="M52 21 C58 24, 64 25, 67 23 C62 21, 57 20, 54 20 Z" fill="#e84d0e"/>
+        <ellipse cx="38" cy="16" rx="6" ry="5" fill="white" opacity=".9"/>
+        <circle cx="36" cy="14.5" r="1.3" fill="#1a2d5a"/>
+        <circle cx="36.3" cy="14.7" r=".6" fill="white"/>
+        <path d="M32 15.5 L28 15 L29.5 16.5 Z" fill="#e84d0e"/>
+      </svg>
+      <span class="foot-brand-name">Terno<span>Trip</span></span>
+    </div>
+    <p class="foot-desc">India's trusted domestic tour operator. We create unforgettable journeys across the length and breadth of Incredible India.</p>
+    <div class="foot-contact">
+      <a href="mailto:hello@ternotrip.com">✉ hello@ternotrip.com</a>
+      <a href="tel:+919999999999">📞 +91 99999 99999</a>
+    </div>
+    <div class="footer-badge">🇮🇳 DOMESTIC TOURS ONLY</div>
   </div>
   <div>
-    <h4>Explore</h4>
-    <a href="#upcoming">Upcoming trips</a>
-    <a href="#trips">Past journeys</a>
-    <a href="#journal">Travel journal</a>
+    <h4>Destinations</h4>
+    <a href="#destinations">Manali & Himachal</a>
+    <a href="#destinations">Goa</a>
+    <a href="#destinations">Kerala</a>
+    <a href="#destinations">Rajasthan</a>
+    <a href="#destinations">Ladakh</a>
+    <a href="#destinations">Meghalaya</a>
   </div>
   <div>
-    <h4>Travel</h4>
-    <a href="#trips">Find your trip</a>
-    <a href="#reviews">Our reviews</a>
-    <a href="#newsletter">Travel with us</a>
+    <h4>Company</h4>
+    <a href="#upcoming">Upcoming Trips</a>
+    <a href="#trips">Past Journeys</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#journal">Travel Blog</a>
+    <a href="#contact">Contact Us</a>
   </div>
   <div>
-    <h4>Here to help</h4>
-    <a href="#newsletter">FAQs</a>
-    <a href="#newsletter">Contact us</a>
-    <a href="#newsletter">Responsible travel</a>
+    <h4>Support</h4>
+    <a href="#contact">FAQs</a>
+    <a href="#contact">Booking Policy</a>
+    <a href="#contact">Cancellation</a>
+    <a href="#contact">Responsible Travel</a>
+    <a href="#contact">EMI Options</a>
   </div>
   <div class="copyright">
-    <span>© <span id="year"></span> TernoTrip. Made for the journey.</span>
-    <span>Privacy · Terms</span>
+    <span>© <span id="year"></span> TernoTrip. All rights reserved. | India Domestic Tours</span>
+    <span>Privacy Policy · Terms of Service</span>
   </div>
 </footer>
 </div>
 
-<div class="toast" id="toast" role="status" aria-live="polite">Thanks for joining us!</div>
+<div class="toast" id="toast">You're on the list! Deals coming soon.</div>
 
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
-/* ════════════════════════════
-   HERO VIDEO CYCLE
-════════════════════════════ */
-(function () {
+/* ── HERO VIDEO CYCLE ── */
+(function(){
   const vids    = Array.from(document.querySelectorAll('#heroWrap video'));
   const dots    = Array.from(document.querySelectorAll('#videoDots span'));
   const counter = document.getElementById('slideCounter');
-  let current   = 0;
-  let clipTimer = null;
-  const CLIP_DURATION = 8000;
+  let cur = 0, timer = null;
+  const DURATION = 8000;
 
-  function goTo(idx) {
-    const prev = current;
-    current = ((idx % vids.length) + vids.length) % vids.length;
-
-    vids[current].currentTime = 0;
-    vids[current].play().catch(() => {});
-    vids[current].classList.add('active');
-
-    setTimeout(() => {
-      if (prev !== current) {
-        vids[prev].classList.remove('active');
-        vids[prev].pause();
-      }
-    }, 1500);
-
-    dots.forEach((d, i) => d.classList.toggle('active', i === current));
-    if (counter) counter.textContent = `${current + 1} / ${vids.length}`;
-
-    clearTimeout(clipTimer);
-    clipTimer = setTimeout(() => goTo(current + 1), CLIP_DURATION);
+  function goTo(idx){
+    const prev = cur;
+    cur = ((idx % vids.length) + vids.length) % vids.length;
+    vids[cur].currentTime = 0;
+    vids[cur].play().catch(()=>{});
+    vids[cur].classList.add('active');
+    setTimeout(()=>{ if(prev!==cur){ vids[prev].classList.remove('active'); vids[prev].pause(); }}, 1500);
+    dots.forEach((d,i)=> d.classList.toggle('active', i===cur));
+    if(counter) counter.textContent = `${cur+1} / ${vids.length}`;
+    clearTimeout(timer);
+    timer = setTimeout(()=> goTo(cur+1), DURATION);
   }
 
-  dots.forEach((d, i) => {
-    d.style.cursor = 'pointer';
-    d.addEventListener('click', () => goTo(i));
-  });
-
-  vids[0].play().catch(() => {});
-  clipTimer = setTimeout(() => goTo(1), CLIP_DURATION);
+  dots.forEach((d,i)=>{ d.style.cursor='pointer'; d.addEventListener('click',()=> goTo(i)); });
+  vids[0].play().catch(()=>{});
+  timer = setTimeout(()=> goTo(1), DURATION);
 })();
 
-/* ════════════════════════════
-   NEWSLETTER TOAST
-════════════════════════════ */
+/* ── NEWSLETTER ── */
 const toast = document.getElementById('toast');
-let toastTimer;
-document.getElementById('signup').addEventListener('submit', e => {
+let tt;
+document.getElementById('signup').addEventListener('submit', e=>{
   e.preventDefault();
   toast.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
+  clearTimeout(tt);
+  tt = setTimeout(()=> toast.classList.remove('show'), 3500);
   e.target.reset();
 });
 </script>
